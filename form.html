@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+    <style>
+      .container {
+        background-color: aquamarine;
+        font-size: 22px;
+        font-weight: bold;
+      }
+      fieldset {
+        border: 3px solid rgb(31, 154, 52);
+        border-radius: 5px;
+      }
+      input {
+        height: 22px;
+        background-color: rgb(231, 229, 221);
+      }
+      #btn {
+        height: 30px;
+        background-color: rgb(30, 201, 164);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <fieldset>
+        <legend>User Information</legend>
+        <form method="post" action="welcome.html"
+        onsubmit="return validate()">
+          <label for="fname"> First Name:</label>
+          <input
+            type="text"
+            name="fname"
+            id="fname"
+            minlength="6"
+          /><br /><br />
+          <label for="lname"> Last Name:</label>
+          <input type="text" name="lname" id="lname"  minlength="1" /><br /><br />
+          <label for="pword">Password:</label>
+          <input
+            type="password"
+            name="pword"
+            id="pword"
+            minlength="6"
+          /><br /><br />
+          <label for="mail">Email:</label>
+          <input type="email" name="mail" id="mail" /><br /><br />
+          <label for="phone">Mobile Number:</label>
+          <input
+            type="text"
+            name="phone"
+            id="phone"
+            minlength="10"
+            maxlength="10"
+          /><br /><br />
+          <label for="address">Address:</label><br />
+          <input
+            name="address"
+            id="address"
+            cols="30"
+            rows="10"
+            minlength="1"
+          />
+          <br /><br />
+          <input type="submit" id="btn" value="Submit" onclick="validate()" />
+        </form>
+      </fieldset>
+    </div>
+    <script>
+      let nameExp = /^[a-zA-Z]+$/;
+      let phoneExp = /^\d{10}$/;
+      let passExp = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+      function validate() {
+        if (!nameExp.test(document.getElementById("fname").value)) {
+          alert("First name should only contain alphabets");
+        }
+        if (document.getElementById("fname").value.length < 6) {
+          alert("First name should not be less than 6 characters");
+        }
+        if (!passExp.test(document.getElementById("pword").value)) {
+          alert(
+            "Password must contain alphanumeric value,special symbol and an uppercase alphabet"
+          );
+        }
+        if (document.getElementById("pword").value.length < 6) {
+          alert("Password should not be less than 6 characters");
+        }
+        if (
+          document.getElementById("phone").value.length < 10 ||
+          document.getElementById("phone").value.length > 10
+        ) {
+          alert("Mobile Number should be of 10 digits");
+        }
+        if (!phoneExp.test(document.getElementById("phone").value)) {
+            alert("mobile number should only contain Digits");
+        }
+        if (!nameExp.test(document.getElementById("lname").value)) {
+            alert("Last name should only contain alphabets");
+        }
+
+        if (document.getElementById("lname").value == "") {
+          alert("Last name field is required");
+        }
+        if (document.getElementById("address").value == "") {
+          alert("Address field is required");
+        }
+      }
+    </script>
+  </body>
+</html>
+  
